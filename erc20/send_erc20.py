@@ -1,4 +1,4 @@
-from utils import NoChainTrx, execute_evm_tx, query_evm_tx
+from ..utils import NoChainTrx, execute_evm_tx, query_evm_tx
 import json
 import requests
 import rlp

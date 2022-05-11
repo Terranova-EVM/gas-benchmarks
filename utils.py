@@ -14,6 +14,12 @@ mnemonic = "remain yard rebuild eternal okay ginger deputy paper scatter square 
 
 caller_evm_address = "B34e2213751c5d8e9a31355fcA6F1B4FA5bB6bE1"
 receiver_evm_address = "2e36b2970ab7A4C955eADD836585c21A087Ab904"
+contract_addresses = {
+    "NOVA_token_address": "c8707e6a4820e5f7d9b9f7659e59dc9dfc8dc02d",
+    "uniswap_factory": "72c41550b6c05c4f8e5494743ca7cab7d5f87afb",
+    "uniswap_exchange": "01434c2bb38d9806b986c2e7d313e11c81340976",
+    "NOVA_exchange_address": "47e0a3ddd614e28670da25b414afad2751741725"
+}
 
 tx_chunk_size = 800 #bytes
 
@@ -30,6 +36,18 @@ class NoChainTrx(rlp.Serializable):
     @classmethod
     def fromString(cls, s):
         return rlp.decode(s, NoChainTrx)
+
+def create_call_tx(to_address, value, tx_data):
+    tx = NoChainTrx(
+        0, # nonce
+        1, # gas price
+        1000000, # gas limit
+        bytes.fromhex(to_address), # toAddress, ERC20simple deployed contract address
+        value, # value
+        bytes.fromhex(tx_data)
+    )
+
+    return rlp.encode(tx)
 
 def execute_evm_tx(rlp_encoded_tx):
     terra = LCDClient(
