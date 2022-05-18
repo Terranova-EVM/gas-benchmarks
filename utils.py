@@ -9,16 +9,31 @@ from terra_sdk.core.coins import Coins
 from sha3 import keccak_256
 import requests
 from time import sleep
-terranova_contract = "terra128vhhjmu3vj0st3szrwnxh4m6h8rpq3hrftnlh"
-mnemonic = "remain yard rebuild eternal okay ginger deputy paper scatter square meadow manage filter present lend off shoe moral impact defy analyst present amateur enough"
+# terranova_contract = "terra128vhhjmu3vj0st3szrwnxh4m6h8rpq3hrftnlh"
+# terranova_contract = "terra19x84tsqwz84ltavt32p9yum6dhplpxkzqku485"
+
+# LocalTerra config
+lcd_url = "http://localhost:1317"
+lcd_chain_id = "localterra"
+mnemonic = "notice oak worry limit wrap speak medal online prefer cluster roof addict wrist behave treat actual wasp year salad speed social layer crew genius"
+terranova_contract = "terra10pyejy66429refv3g35g2t7am0was7ya7kz2a4"
+
+# Testnet config
+# lcd_url = "https://bombay-lcd.terra.dev/"
+# lcd_chain_id = "bombay-12" 
+# mnemonic = "remain yard rebuild eternal okay ginger deputy paper scatter square meadow manage filter present lend off shoe moral impact defy analyst present amateur enough"
+# terranova_contract = "terra1wtc92tm2m940zvpa4m0a9vv7p0nj45aaaf2zh6"
 
 caller_evm_address = "B34e2213751c5d8e9a31355fcA6F1B4FA5bB6bE1"
 receiver_evm_address = "2e36b2970ab7A4C955eADD836585c21A087Ab904"
 contract_addresses = {
-    "NOVA_token_address": "c8707e6a4820e5f7d9b9f7659e59dc9dfc8dc02d",
-    "uniswap_factory": "72c41550b6c05c4f8e5494743ca7cab7d5f87afb",
-    "uniswap_exchange": "01434c2bb38d9806b986c2e7d313e11c81340976",
-    "NOVA_exchange_address": "47e0a3ddd614e28670da25b414afad2751741725"
+    "NOVA_token_address": "0xff3b783539a1a7a53ecacfb1c0778274c670f35b",
+    "uniswap_factory": "0x04a9bcdb32fec840042fdc389e6b4b16895b9465",
+    "uniswap_exchange": "0x8c306b6fbaf1fbe40163d9e1fbb13a9f4d45581f",
+    "NOVA_exchange_address": "0x81fbcd18f020732ab961e169846d70e3bf67a538"
+}
+contract_addresses = {
+    
 }
 
 tx_chunk_size = 800 #bytes
@@ -51,8 +66,8 @@ def create_call_tx(to_address, value, tx_data):
 
 def execute_evm_tx(rlp_encoded_tx):
     terra = LCDClient(
-        url="https://bombay-lcd.terra.dev/",
-        chain_id="bombay-12"
+        url=lcd_url,
+        chain_id=lcd_chain_id
     )
 
     mk = MnemonicKey(mnemonic = mnemonic)
@@ -141,8 +156,8 @@ def execute_evm_tx(rlp_encoded_tx):
 
 def query_evm_tx(rlp_encoded_tx):
     terra = LCDClient(
-        url="https://bombay-lcd.terra.dev/",
-        chain_id="bombay-12"
+        url=lcd_url,
+        chain_id=lcd_chain_id
     )
 
     query_json = {"raw_ethereum_query": {
@@ -156,8 +171,8 @@ def query_evm_tx(rlp_encoded_tx):
 
 def query_evm_account(evm_address):
     terra = LCDClient(
-        url="https://bombay-lcd.terra.dev/",
-        chain_id="bombay-12"
+        url=lcd_url,
+        chain_id=lcd_chain_id
     )
 
     query_json = {"query_evm_account": {

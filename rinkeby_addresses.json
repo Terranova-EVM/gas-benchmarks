@@ -3,7 +3,7 @@
     "uniswap_factory": "0x38c3fa88723849d63c77a7e7ef54ef4baf9881b4",
     "uniswap_exchange": "0xa61d58E5460FA7811306AD8a7e511bb5D34C6b97",
     "NOVA_exchange": "0xE11E0411d95dCa1eD5bFeFBB2f834e47305e1B84",
-
+    
     "real_uniswap_factory": "0xf5D915570BC477f9B8D6C0E980aA81757A3AaC36",
     "NOVA_exchange_on_real_uniswap": "0x8c7c33345d6cfbf80f3571de54913bf011e2b858"
 }
